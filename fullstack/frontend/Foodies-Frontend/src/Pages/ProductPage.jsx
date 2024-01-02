@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../Redux/Products/actions";
-import { Box, FormControl, Heading, Input, Skeleton, Stack } from '@chakra-ui/react'
+import { Box, FormControl, Heading, Input, Skeleton, Stack,Text } from '@chakra-ui/react'
 import {
   PRODUCT_FAILURE,
   PRODUCT_SUCCESS,
@@ -12,6 +12,7 @@ import { useSearchParams } from "react-router-dom";
 import AddToCartPage from "./AddToCartPage";
 import Navbar from "../Components/Navbar";
 const ProductPage = () => {
+  const[count,setCount]=useState(0)
   const dispatch = useDispatch();
   const { isLoading, products, isError } = useSelector(state => state.productReducer)
   const [searchParams] = useSearchParams("")
@@ -43,6 +44,10 @@ const ProductPage = () => {
     <Skeleton height='20px' />
   </Stack> : isError ? <Heading color={"red"}>Something went wrong</Heading> : <Box>
     <Navbar />
+    {/* <div style={{marginTop:200}}>
+      <p>Count:{count}</p>
+      <button onClick={()=>setCount(count+1)}>click</button>
+    </div> */}
     <ProductList products={products} />
   </Box>;
 };

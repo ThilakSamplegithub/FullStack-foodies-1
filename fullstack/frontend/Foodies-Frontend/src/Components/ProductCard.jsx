@@ -1,19 +1,21 @@
 import { Card,CardBody, CardFooter,Button,Divider,Text,Heading,ButtonGroup,Stack,Image, Flex} from '@chakra-ui/react'
-import React from 'react'
+import React,{memo} from 'react'
 import { useDispatch } from 'react-redux'
 import { Link as RouterLink} from "react-router-dom"
 import { addToCart } from '../Redux/Products/actions'
 const ProductCard = ({_id,name,category,image,price}) => {
+  console.log(_id,name,category,price,image)
+  console.log('rendered productCard')
   const dispatch=useDispatch()
   const handleAddToCart=()=>{
     dispatch(addToCart(_id))
   }
-  // const id=String(_id)
   return (
     <Card maxW='sm'>
   <CardBody>
   <RouterLink to={`/singleProductPage/${_id}`}> <Image
       src={image} minH={"250px"}
+      loading="lazy"
       alt='Not Available'
       borderRadius='lg'
     /></RouterLink>
@@ -39,5 +41,5 @@ const ProductCard = ({_id,name,category,image,price}) => {
 </Card>
   )
 }
-
-export default ProductCard
+const MemoizedProductCard=memo(ProductCard)
+export default MemoizedProductCard

@@ -15,7 +15,7 @@ const Testimonial = () => {
         </p>
       </div>
       <div className="testimonial-section-bottom">
-        <img src={ProfilePic} alt="" />
+        <img src={ProfilePic} loading="lazy" alt="" />
         <p>
           Foodies Paradise is an absolute delight! Their wide selection, prompt
           delivery, and mouthwatering flavors make every meal a heavenly

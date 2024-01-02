@@ -21,7 +21,7 @@ const HomePage = () => {
       <div style={{ margin: "3rem" }} className="home-container">
         <div className="home-banner-container">
           <div className="home-bannerImage-container">
-            <img src={BannerBackground} alt="" />
+            <img src={BannerBackground} loading="lazy" alt="" />
           </div>
           <div className="home-text-section">
            <h1 className="primary-heading">
@@ -39,7 +39,7 @@ const HomePage = () => {
             </button>
           </div>
           <div className="home-image-section">
-            <img src={BannerImage} alt="" />
+            <img src={BannerImage} loading="lazy" alt="" />
           </div>
         </div>
         <About />

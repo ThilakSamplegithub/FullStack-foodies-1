@@ -10,7 +10,7 @@ const Footer = () => {
     <div className="footer-wrapper">
       <div className="footer-section-one">
         <div className="footer-logo-container">
-          <img width="100px" src={Logo} alt="" />
+          <img width="100px" loading="lazy" src={Logo} alt="" />
         </div>
         <div className="footer-icons">
           <BsTwitter />
