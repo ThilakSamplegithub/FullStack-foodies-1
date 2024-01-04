@@ -13,9 +13,9 @@ res.status(400).send({err:err.message})
 })
 productRouter.get('/',async(req,res)=>{
 try{
-    const{category,order}=req.query
-    console.log(category,order,'is category and order')
-    const query={},priceObj={}
+    const{category,order,name}=req.query
+    console.log(category,order,name,'is category and order')
+    const query={},priceObj={},nameObj={}
      if(category){
         // const newCategory=RegExp(category,"i")
         query.category={$in:category}
@@ -24,8 +24,13 @@ try{
     if(order){
         order==='asc'?priceObj.price=1:priceObj.price=-1
     }
+    if(name){
+           let nameQuery=new RegExp(name,'i')
+        nameObj.name=nameQuery
+    }
+    console.log(nameObj)
     // console.log(priceObj,'is price object')
- const products= await productModel.find(query).sort(priceObj)
+ const products= await productModel.find({$and:[query,nameObj]}).sort(priceObj)
 //  console.log(products,'is products')
  return res.status(201).json({products})
 }catch(err){
