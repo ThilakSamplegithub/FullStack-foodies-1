@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,Suspense } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../Redux/Products/actions";
 import { Box, FormControl, Heading, Input, Skeleton, Stack,Text } from '@chakra-ui/react'
@@ -7,10 +7,11 @@ import {
   PRODUCT_FAILURE,
   PRODUCT_SUCCESS,
 } from "../Redux/Products/actionTypes";
-import ProductList from "../Components/ProductList";
+// import ProductList from "../Components/ProductList";
 import { useSearchParams } from "react-router-dom";
 import AddToCartPage from "./AddToCartPage";
 import Navbar from "../Components/Navbar";
+const ProductList=React.lazy(()=>import("../Components/ProductList"))
 const ProductPage = () => {
   const[count,setCount]=useState(0)
   const dispatch = useDispatch();
@@ -48,7 +49,9 @@ const ProductPage = () => {
       <p>Count:{count}</p>
       <button onClick={()=>setCount(count+1)}>click</button>
     </div> */}
+    <Suspense fallback={<p>This is loading....</p>}>
     <ProductList products={products} />
+    </Suspense>
   </Box>;
 };
 export default ProductPage;

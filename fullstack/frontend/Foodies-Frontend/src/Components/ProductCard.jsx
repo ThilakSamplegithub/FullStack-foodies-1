@@ -11,15 +11,18 @@ import {
   Image,
   Flex,
 } from "@chakra-ui/react";
-import React, { memo } from "react";
+import React, { memo,useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link as RouterLink } from "react-router-dom";
 import { addToCart } from "../Redux/Products/actions";
 const ProductCard = ({ _id, name, category, image, price }) => {
+  const[isClick,setClick]=useState(false)
   console.log(_id, name, category, price, image);
   console.log("rendered productCard");
   const dispatch = useDispatch();
   const handleAddToCart = () => {
+    setClick(true)
+    setTimeout(()=>setClick(false),2000)
     dispatch(addToCart(_id));
   };
   return (
@@ -52,7 +55,7 @@ const ProductCard = ({ _id, name, category, image, price }) => {
               colorScheme="blue"
               onClick={handleAddToCart}
             >
-              Add to cart
+              {isClick?"Added":"Add to cart"}
             </Button>
           </Stack>
         </ButtonGroup>
