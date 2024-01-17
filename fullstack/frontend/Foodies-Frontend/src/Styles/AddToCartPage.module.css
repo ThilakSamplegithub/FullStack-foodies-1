@@ -3,7 +3,7 @@
 }
 .mini{
 display: none;
-border:2px solid red
+border:0px solid red
 }
 @media screen and (width<=912px) {
     .mini{
