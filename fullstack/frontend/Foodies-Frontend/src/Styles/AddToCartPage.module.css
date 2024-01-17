@@ -1,3 +1,15 @@
 .totalQ{
     color:black;
 }
+.mini{
+display: none;
+border:2px solid red
+}
+@media screen and (width<=912px) {
+    .mini{
+        display: block;
+    }
+    .desktop{
+        display: none;
+    }
+}

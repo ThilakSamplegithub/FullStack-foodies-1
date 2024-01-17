@@ -23,6 +23,7 @@ import {
 import TotalCart from "../Components/TotalCart";
 import Navbar from "../Components/Navbar";
 import { Link as RouterLink, Navigate } from "react-router-dom";
+import MiniAddToCart from "../Components/MiniAddToCart";
 
 const AddToCartPage = () => {
   const [addToCartArr, setCartArr] = useState([]);
@@ -43,8 +44,9 @@ const AddToCartPage = () => {
    {cartArr.length === 0 ? (
         <Heading m={"200px"} className={styles.totalQ}>Your Cart is Empty</Heading>
       ) : (
-        <Box>
+        <div>
          <Heading mt={"200px"} color="blue">Your Cart has {totalQuantity} items</Heading>
+         <div className={styles.desktop}>
           <TableContainer>
             <Table variant="striped" colorScheme="teal">
               <Thead>
@@ -61,16 +63,21 @@ const AddToCartPage = () => {
               ))}
             </Table>
           </TableContainer>
+          </div>
+          <div className={styles.mini}>
+          <div style={{display:"flex",justifyContent:"center",flexDirection:'column',gap:20}}>
+            {cartArr.map(el=><MiniAddToCart key={el._id} handleRemove={handleRemove} {...el}/>)}
+          </div></div>
           <RouterLink to="/checkout">
-            <Button variant="solid" colorScheme="blue">
+            <Button variant="solid" colorScheme="blue" ml={2} mt={3}>
               Buy now
             </Button>
           </RouterLink>
-          <Button bg={"red"} onClick={() => dispatch(clearCart())}>
+          <Button bg={"red"} ml={5} mt={3} onClick={() => dispatch(clearCart())}>
             Clear Cart
           </Button>
           <TotalCart cartTotal={totalPrice} />
-        </Box>
+        </div>
       )}
       </Box> 
 };
