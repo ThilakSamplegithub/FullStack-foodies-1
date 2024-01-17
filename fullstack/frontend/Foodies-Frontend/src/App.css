@@ -81,7 +81,10 @@ nav {
 .home-bannerImage-container {
   position: absolute;
   top: 0;
-  right: -170px;
+  /* left:300px; */
+  /* right:-170px he gave */
+  /* right: -45px;but i would like to give in percentages */
+  right:-3%;
   z-index: -2;
   width: 100%;
   max-width: 700px;
