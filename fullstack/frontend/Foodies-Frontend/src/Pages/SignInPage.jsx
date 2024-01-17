@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import styles from "../Styles/SigninPage.module.css"
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
   Button,
@@ -30,8 +31,9 @@ const SignIn = () => {
   const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const {signinLoading}=useSelector(state=>state.authReducer)
+  console.log(signinLoading,'is signinLoading')
   const pathComingFrom = location.state?.from?.pathname || '/';
-
  const handleSignIn = async () => {
   const credentials = { email, password };
 
@@ -58,7 +60,7 @@ const SignIn = () => {
     setShowPassword(!showPassword);
   };
 
-  return (
+  return signinLoading?<div><span className={styles.loader}></span></div>: (
     <>
       <Navbar/>
       <ToastContainer />

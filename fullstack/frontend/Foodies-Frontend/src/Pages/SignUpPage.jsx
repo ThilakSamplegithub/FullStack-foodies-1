@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import styles from "../Styles/SignupPage.module.css"
 import {
   Button,
   Box,
@@ -15,7 +16,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { signupRequest } from "../Redux/Authentication/actions";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -31,13 +32,13 @@ const SignUp = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+const {signupLoading}=useSelector(state=>state.authReducer)
+console.log(signupLoading,'is loading state in signuppage')
   const handleSignUp = async () => {
     if (password !== confirmPassword) {
       toast.error("Passwords do not match");
       return;
     }
-
     const userData = {
       username: username,
       email: email,
@@ -69,7 +70,7 @@ const SignUp = () => {
     setShowConfirmPassword(!showConfirmPassword);
   };
 
-  return (
+  return signupLoading? <div className={styles.parentLoader}><span className={styles.loader}></span></div>:(
     <>
       <ToastContainer />
       <Navbar/>
@@ -156,6 +157,7 @@ const SignUp = () => {
               >
                 Sign up
               </Button>
+              {/* <span className={styles.loader}></span> */}
               <Text mt={2} textAlign="center" fontSize="md" color="black.500">
                 Already have an account? <Link to="/signin">Sign in</Link>
               </Text>

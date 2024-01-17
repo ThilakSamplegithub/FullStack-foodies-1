@@ -1,0 +1,31 @@
+.loader{
+    display: block;
+    position: relative;
+    height: 12px;
+    width: 80%;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .loader:after{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 0;
+    background: #FF3D00;
+    animation: 6s prog ease-in infinite;
+  /* margin:auto */
+  }
+  .parentLoader{
+   border:0px solid red;
+   width:100%;
+   display:flex;
+  justify-content: center;
+  align-items: center;
+  }
+  @keyframes prog {
+    to  {   width: 100%;}
+  }
+  
